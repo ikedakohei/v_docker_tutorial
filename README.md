@@ -306,8 +306,6 @@ DBがありませんというようなエラー画面がでると思うので、
 ```shell
 # docker-compose.ymlがあるディレクトリで実行
 $ docker-compose exec web bundle exec rails db:create
-Created database 'rails_app_development'
-Created database 'rails_app_test'
 ```
 
 再び、`http://localhost:3000/`にアクセスします。`Yay! You’re on Rails!`というページがでてくれば、Rails + PostgreSQLの環境構築に成功しました。
