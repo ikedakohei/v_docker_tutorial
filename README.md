@@ -312,7 +312,7 @@ $ docker-compose exec web bundle exec rails db:create
 
 ---
 
-## 参考にしたサイト、本、動画
+## 参考
 
 - [Docker公式サイト](https://www.docker.com/)
 - [Dokcer Hub](https://hub.docker.com/)
