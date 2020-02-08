@@ -1,0 +1,24 @@
+# Composeファイルのバージョンを指定
+version: '3.7'
+# postgres_dataというVolumeをホスト側に作成
+volumes:
+  postgres_data: {}
+# webとして定義されたコンテナとdbとして定義されたコンテナを作成
+services:
+  web:
+    build: . # カレントディレクトリにあるDockerfileをもとにイメージをビルド
+    command: bundle exec rails s -b '0.0.0.0' # コンテナ起動時に実行されるコマンド
+    volumes:
+      - type: bind # bindマウント
+        source: . # ホスト側のパスを指定
+        target: /var/www/rails_app # コンテナ側のパスを指定
+    ports:
+      - "3000:3000" # ホスト:コンテナのポート番号で、ポートを公開
+    depends_on:
+      - db # dbのコンテナが起動してから、webのコンテナが起動する
+  db:
+    image: postgres:12.1 # Docker Hubにあるpostgres:12.1イメージをpull
+    volumes:
+      - type: volume # volumeマウント
+        source: postgres_data # 5行目で作成したVolumeを指定
+        target: /var/lib/postgresql/data # コンテナ側のパスを指定
