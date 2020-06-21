@@ -17,7 +17,9 @@ services:
     depends_on:
       - db # dbのコンテナが起動してから、webのコンテナが起動する
   db:
-    image: postgres:12.1 # Docker Hubにあるpostgres:12.1イメージをpull
+    image: postgres:12.3 # Docker Hubにあるpostgres:12.3イメージをpull
+    environment:
+      POSTGRES_PASSWORD: postgres_password
     volumes:
       - type: volume # volumeマウント
         source: postgres_data # 5行目で作成したVolumeを指定
